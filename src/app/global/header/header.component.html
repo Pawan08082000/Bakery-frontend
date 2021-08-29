@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <a routerLink="/home"
+        ><img class="brand" src="assets/images/logo.png"/>
+      </a>
+      <button mat-button>
+        <span class="logo"><a><b>Eats and Treats</b></a></span>
+      </button>
+    </div>
+    <div fxLayout="row">
+      <div *ngIf="!deviceXs">
+        <button mat-button>
+          <span routerLink="home">Home</span>
+        </button>
+        <button mat-button>
+          <span routerLink="menu">Menu</span>
+        </button>
+        <button mat-button *ngIf="!this._auth.isLoggedIn()">
+          <span routerLink="/auth/login">Login</span>
+        </button>
+      </div>
+
+      <img src="../../../assets/images/profile.jpg" *ngIf="this._auth.isLoggedIn()" class="avtar" alt="" />
+      <div *ngIf="this._auth.isLoggedIn()">
+          <button
+            mat-icon-button
+            class="more-button"
+            [matMenuTriggerFor]="menu"
+            aria-label="Toggle menu"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <div>
+            <mat-menu
+              style="background-color: white"
+              #menu="matMenu"
+              xPosition="before"
+            >
+              <button class="menu" *ngIf="this.role == 'ADMIN'" routerLink="/admin" mat-menu-item>
+                Admin
+              </button>
+              <button class="menu" (click)="logout()" mat-menu-item>
+                Logout
+              </button>
+            </mat-menu>
+          </div>
+        </div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-toolbar *ngIf="deviceXs">
+  <mat-toolbar-row fxLayoutAlign="space-between end">
+    <button mat-button>
+      <span>Home</span>
+    </button>
+    <button mat-button>
+      <span>About</span>
+    </button>
+    <button mat-button>
+      <span>Login</span>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

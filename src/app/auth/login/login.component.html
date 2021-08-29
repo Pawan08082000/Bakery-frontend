@@ -1,0 +1,73 @@
+<mat-card>
+    <mat-card-title>{{title | titlecase}}</mat-card-title>
+    <hr>
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-label class="col alert alert-success center" *ngIf="this.message">{{
+      this.message
+    }}</mat-label>
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="row align-items-center">
+          <div class="col-sm-11">
+            <mat-icon class="icon">account_circle</mat-icon>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Username:</mat-label>
+              <input matInput placeholder="Username" formControlName="username" />
+              <mat-error
+                *ngIf="loginForm.controls['username'].hasError('required')"
+              >
+                Email is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Password:</mat-label>
+              <input
+                matInput
+                placeholder="Password"
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? "visibility" : "visibility_off"
+              }}</mat-icon>
+              <mat-error
+                *ngIf="loginForm.controls['password'].hasError('required')"
+              >
+                Password is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <br />
+ 
+        <div class="row align-items-start">
+          <div class="col">
+            <mat-checkbox [checked]="booleanVariable" formControlName="rememberMe"
+              >Remember me!</mat-checkbox
+            >
+          </div>
+        </div>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" [disabled]="this.loginForm.invalid">Login</button>
+        </mat-card-actions>
+        <br />
+        <br />
+        <p>Not a Member? <a routerLink="/auth/signup">Sign Up Now</a></p>
+      </div>
+      <!-- <div class="col-sm-8">
+        <div class="container">
+          <img mat-card-image class="rounded" src="../../../assets/HR.jpg" />
+        </div>
+      </div> -->
+    </div>
+    <div class="row"></div>
+  </form>
+</mat-card>

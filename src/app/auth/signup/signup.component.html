@@ -1,0 +1,109 @@
+<mat-card>
+    <mat-card-title>{{title | titlecase}}</mat-card-title>
+    <hr>
+<form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-label class="col alert alert-success center" *ngIf="this.message">{{
+      this.message
+    }}</mat-label>
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="row align-items-center">
+          <div class="col-sm-11">
+            <mat-icon class="icon">account_circle</mat-icon>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-label>Username:</mat-label>
+              <input matInput placeholder="Username" formControlName="username" />
+              <mat-error
+                *ngIf="registerForm.controls['username'].hasError('required')"
+              >
+                Username is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Email" formControlName="email" />
+                <mat-error *ngIf="registerForm.controls['email'].hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="registerForm.controls['email'].hasError('email')">
+                  Invalid Email
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input
+                  matInput
+                  placeholder="Password"
+                  formControlName="password"
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <mat-icon matSuffix (click)="hide = !hide">{{
+                  hide ? "visibility" : "visibility_off"
+                }}</mat-icon>
+                <mat-error
+                  *ngIf="registerForm.controls['password'].hasError('required')"
+                >
+                  Password is <strong>required</strong>
+                </mat-error>
+                <mat-error
+                  *ngIf="registerForm.controls['password'].hasError('minlength')"
+                >
+                  Must be at least 6 chars
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input
+                  matInput
+                  placeholder="Confirm Password"
+                  formControlName="cnfPassword"
+                  [type]="hide ? 'password' : 'text'"
+                />
+                <mat-icon matSuffix (click)="cnPassHide = !cnPassHide">{{
+                  cnPassHide ? "visibility" : "visibility_off"
+                }}</mat-icon>
+                <mat-error
+                  *ngIf="registerForm.controls['cnfPassword'].hasError('required')"
+                >
+                  <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+              <mat-error *ngIf="registerForm.hasError('notSame')">
+                Passwords do not match
+              </mat-error>
+            </div>
+          </div>
+        <br />
+       
+        <br />
+       
+        <mat-card-actions>
+          <button mat-raised-button color="primary" [disabled]="this.registerForm.invalid" type="submit">Register</button>
+        </mat-card-actions>
+        <br />
+        <br />
+        <strong
+          >Already have an account? <a routerLink="/auth/login">SignIn</a></strong
+        >
+      <!-- <div class="col-sm-8">
+        <div class="container">
+          <img mat-card-image class="rounded" src="../../../assets/HR.jpg" />
+        </div>
+      </div> -->
+    </div>
+    </div>
+  </form>
+</mat-card>

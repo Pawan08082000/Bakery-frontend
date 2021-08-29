@@ -1,0 +1,74 @@
+
+.full-width {
+  width: 50%;
+}
+
+.product-card {
+  min-width: 20px;
+  margin: 20px auto;
+  background-color: gray;
+  color:black
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  flex: 1;
+  flex-direction: row;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+input{
+  font-size: large;
+}
+form{
+  text-align: center;
+
+}
+mat-card-title{
+  font-size:100px;
+}
+
+h1{
+  font-size: 30px;
+}
+input{
+  size:40px;
+  text-color:black;
+}
+.icon{
+  font-size:60px;
+}
+  mat-form-field{
+      font-size:20px;
+      color:black;
+  }
+  mat-form-actions{
+      font-size:20px;
+  } mat-label input{
+      color:black;
+  }
+  mat-card{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: gray;
+    color:black;
+    margin-left: 10%;
+    margin-right: 10%;
+
+}
+  mat-error{
+    color:palevioletred
+  }

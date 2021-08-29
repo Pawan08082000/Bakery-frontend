@@ -1,0 +1,104 @@
+<form [formGroup]="productForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="product-card">
+    <mat-card-header>
+      <mat-card-title>Product Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div fxLayout.xs="space-around">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Title" formControlName="title" />
+            <mat-error
+              *ngIf="productForm.controls['title'].hasError('required')"
+            >
+              Title is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div fxLayout.xs="space-around">
+          <mat-form-field class="full-width">
+            <textarea
+              matInput
+              placeholder="Description"
+              formControlName="description"
+            ></textarea>
+            <mat-error
+              *ngIf="productForm.controls['description'].hasError('required')"
+            >
+              Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout.xs="space-around">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Pice"
+              formControlName="price"
+              type="number"
+            />
+            <mat-error
+              *ngIf="productForm.controls['price'].hasError('required')"
+            >
+              Price is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div fxLayout.xs="space-around">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Unit In Stock"
+              formControlName="unitInStock"
+              type="number"
+            />
+            <mat-error
+              *ngIf="productForm.controls['unitInStock'].hasError('required')"
+            >
+              Unit Stock is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div fxLayout.xs="space-around">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Category" formControlName="category">
+              <mat-option
+                *ngFor="let category of categories"
+                [value]="category"
+              >
+                {{ category.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="productForm.controls['category'].hasError('required')"
+            >
+              Category is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div fxLayout.xs="space-around">
+          <mat-label for="ratings">Rating</mat-label>
+          <mat-radio-group formControlName="ratings" class="row">
+            <mat-radio-button value=1>1</mat-radio-button>
+            <mat-radio-button value=2>2</mat-radio-button>
+            <mat-radio-button value=3>3</mat-radio-button>
+            <mat-radio-button value=4>4</mat-radio-button>
+            <mat-radio-button value=5>5</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Add Product</button>      
+    </mat-card-actions>
+  </mat-card>
+</form>
